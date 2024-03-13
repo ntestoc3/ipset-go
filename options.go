@@ -7,9 +7,10 @@ import (
 
 // CreateOptions is the options struct for creating a new ipset
 type CreateOptions struct {
-	Family   uint8
-	Protocol uint8
-	Size     uint32 // size/hashsize
+	Family     uint8
+	Protocol   uint8
+	Size       uint32 // size/hashsize
+	MaxElement uint32 // maxelem This parameter is valid for the create command of all hash type sets. It does define the maximal number of elements which can be stored in the set, default 65536.
 
 	Replace  bool // replace existing ipset
 	Timeout  uint32

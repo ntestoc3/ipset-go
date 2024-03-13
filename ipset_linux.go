@@ -101,6 +101,14 @@ func (h *Handle) Create(setname, typename string, options CreateOptions) error {
 		}
 	}
 
+	if options.MaxElement > 0 {
+		switch TypeName(typename).Method() {
+		case "hash":
+			data.AddChild(nl.NewRtAttr(IPSET_ATTR_MAXELEM|int(nl.NLA_F_NET_BYTEORDER), htonl(options.MaxElement)))
+		}
+
+	}
+
 	switch typename {
 	case TypeBitmapPort:
 		data.AddChild(nl.NewRtAttr(IPSET_ATTR_PORT_FROM|int(nl.NLA_F_NET_BYTEORDER), htons(options.PortFrom)))
